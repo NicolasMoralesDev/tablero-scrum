@@ -15,5 +15,29 @@ public class Etiqueta {
     @Column(name = "NOMBRE")
     private String nombre;
     @Column(name = "BORRADO")
-    private boolean borrado;
+    private boolean borrado=false;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public boolean isBorrado() {
+        return borrado;
+    }
+
+    public void setBorrado(boolean borrado) {
+        this.borrado = borrado;
+    }
 }

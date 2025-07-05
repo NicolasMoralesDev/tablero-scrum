@@ -2,6 +2,7 @@ package com.nicolasmorales.controller;
 
 import com.nicolasmorales.bo.IColumnaBO;
 import com.nicolasmorales.dto.ColumnaDTO;
+import com.nicolasmorales.exception.BussinesException;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
@@ -23,8 +24,19 @@ public class ColumnaController {
     }
 
     @GET
+    @Path("/tablero")
     public Response obtenerColumnasPorTablero(@QueryParam(value = "tablero") Long tablero) {
         return Response.ok(columnaBO.obtenerColumnasPorTablero(tablero)).build() ;
+    }
+
+    @POST
+    public Response guardarColumna(ColumnaDTO columna) throws BussinesException {
+        return Response.ok(columnaBO.crearColumna(columna)).build() ;
+    }
+
+    @DELETE
+    public Response borrarColumna(@QueryParam(value = "id") Long id) throws BussinesException {
+        return Response.ok(columnaBO.borrarColumnaPorId(id)).build() ;
     }
 
 }

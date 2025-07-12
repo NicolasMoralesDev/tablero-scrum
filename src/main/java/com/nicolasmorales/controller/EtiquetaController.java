@@ -1,11 +1,11 @@
 package com.nicolasmorales.controller;
 
 import com.nicolasmorales.bo.IEtiquetaBO;
+import com.nicolasmorales.dto.ColumnaDTO;
+import com.nicolasmorales.dto.EtiquetaDTO;
+import com.nicolasmorales.exception.BussinesException;
 import jakarta.inject.Inject;
-import jakarta.ws.rs.Consumes;
-import jakarta.ws.rs.GET;
-import jakarta.ws.rs.Path;
-import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
@@ -18,8 +18,17 @@ public class EtiquetaController {
     IEtiquetaBO etiquetaBO;
 
     @GET
-    public Response obtenerEtiquetas() {
+    public Response obtenerEtiqueta() {
         return Response.ok(etiquetaBO.obtenerEtiquetas()).build() ;
     }
 
+    @POST
+    public Response guardarEtiqueta(EtiquetaDTO etiquetaDTO) throws BussinesException {
+        return Response.ok(etiquetaBO.crearEtiqueta(etiquetaDTO)).build() ;
+    }
+
+    @DELETE
+    public Response borrarEtiqueta(@QueryParam(value = "id") Long id) throws BussinesException {
+        return Response.ok(etiquetaBO.borrarEtiquetaPorId(id)).build() ;
+    }
 }

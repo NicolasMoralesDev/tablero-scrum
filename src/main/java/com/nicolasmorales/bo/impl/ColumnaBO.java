@@ -3,9 +3,7 @@ package com.nicolasmorales.bo.impl;
 import com.nicolasmorales.bo.IColumnaBO;
 import com.nicolasmorales.dto.ColumnaDTO;
 import com.nicolasmorales.exception.BussinesException;
-import com.nicolasmorales.filter.FilterLog;
 import com.nicolasmorales.mapper.IColumnaMapper;
-import com.nicolasmorales.repository.IColumnaRepository;
 import com.nicolasmorales.repository.impl.ColumnaRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
@@ -18,7 +16,7 @@ import java.util.stream.Collectors;
 @ApplicationScoped
 public class ColumnaBO implements IColumnaBO {
 
-    private static final Logger LOG = Logger.getLogger(FilterLog.class);
+    private static final Logger LOG = Logger.getLogger(ColumnaBO.class);
 
     @Inject
     ColumnaRepository columnaRepository;

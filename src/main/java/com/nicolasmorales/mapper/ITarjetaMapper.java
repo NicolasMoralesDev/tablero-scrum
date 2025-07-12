@@ -17,4 +17,13 @@ public interface ITarjetaMapper {
             @Mapping(target = "borrado", source = "tarjeta.borrado"),
     })
     TarjetaDTO tarjetaToTarjetaDTO(Tarjeta tarjeta);
+
+    @Mappings({
+            @Mapping(target = "id", source = "tarjeta.idTarjeta"),
+            @Mapping(target = "titulo", source = "tarjeta.titulo"),
+            @Mapping(target = "descripcion", source = "tarjeta.descripcion"),
+            @Mapping(target = "fechaDeCreacion", source = "tarjeta.fechaDeCreacion"),
+            @Mapping(target = "borrado", source = "tarjeta.borrado"),
+    })
+    Tarjeta tarjetaDTOToTarjeta(TarjetaDTO tarjeta);
 }

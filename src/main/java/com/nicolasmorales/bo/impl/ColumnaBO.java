@@ -51,8 +51,12 @@ public class ColumnaBO implements IColumnaBO {
     @Override
     public ColumnaDTO crearColumna(ColumnaDTO columna) throws BussinesException {
        try {
-           columnaRepository.guardar(columnaMapper.columnaDTOToColumna(columna));
-           return null;
+           if (columnaRepository.find("titulo", columna.titulo()).firstResult() == null) {
+               columnaRepository.guardar(columnaMapper.columnaDTOToColumna(columna));
+               return columna;
+           } else {
+               throw new BussinesException(String.format("La columna con el nombre %s ya existe", columna.titulo()));
+           }
        } catch (PersistenceException e) {
            throw new BussinesException("Error al intentar registrar la columna");
        }

@@ -2,6 +2,7 @@ package com.nicolasmorales.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -20,10 +21,11 @@ public class Tarjeta {
     private List<Etiqueta> etiquetas;
     @Column(name = "DESCRIPCION")
     private String descripcion;
+    @CreationTimestamp
     @Column(name = "FECHA_DE_CREACION")
     private LocalDateTime fechaDeCreacion;
     @Column(name = "BORRADO")
-    private boolean borrado=false;
+    private boolean borrado;
 
     public Long getId() {
         return id;

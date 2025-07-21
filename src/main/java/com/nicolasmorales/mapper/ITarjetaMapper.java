@@ -6,12 +6,13 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 
-@Mapper(componentModel = "jakarta")
+@Mapper(componentModel = "jakarta" )
 public interface ITarjetaMapper {
 
     @Mappings({
-            @Mapping(target = "idTarjeta", source = "tarjeta.id"),
+            @Mapping(target = "id", source = "tarjeta.id"),
             @Mapping(target = "titulo", source = "tarjeta.titulo"),
+            @Mapping(target = "etiquetas", source = "tarjeta.etiquetas", ignore = true),
             @Mapping(target = "descripcion", source = "tarjeta.descripcion"),
             @Mapping(target = "fechaDeCreacion", source = "tarjeta.fechaDeCreacion"),
             @Mapping(target = "borrado", source = "tarjeta.borrado"),
@@ -19,8 +20,9 @@ public interface ITarjetaMapper {
     TarjetaDTO tarjetaToTarjetaDTO(Tarjeta tarjeta);
 
     @Mappings({
-            @Mapping(target = "id", source = "tarjeta.idTarjeta"),
+            @Mapping(target = "id", source = "tarjeta.id"),
             @Mapping(target = "titulo", source = "tarjeta.titulo"),
+            @Mapping(target = "etiquetas", source = "tarjeta.etiquetas", ignore = true),
             @Mapping(target = "descripcion", source = "tarjeta.descripcion"),
             @Mapping(target = "fechaDeCreacion", source = "tarjeta.fechaDeCreacion"),
             @Mapping(target = "borrado", source = "tarjeta.borrado"),

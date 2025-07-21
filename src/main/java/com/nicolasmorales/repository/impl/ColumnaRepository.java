@@ -3,6 +3,7 @@ package com.nicolasmorales.repository.impl;
 import com.nicolasmorales.entity.Columna;
 import com.nicolasmorales.entity.Columna_;
 import com.nicolasmorales.repository.IColumnaRepository;
+import io.quarkus.hibernate.orm.panache.PanacheRepository;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -12,7 +13,7 @@ import jakarta.persistence.criteria.CriteriaUpdate;
 import jakarta.persistence.criteria.Root;
 
 @ApplicationScoped
-public class ColumnaRepository extends RepoGenerico<Columna> implements IColumnaRepository  {
+public class ColumnaRepository extends RepoGenerico<Columna> implements IColumnaRepository, PanacheRepository<Columna> {
 
     @PersistenceContext
     private EntityManager entityManagerFactory;

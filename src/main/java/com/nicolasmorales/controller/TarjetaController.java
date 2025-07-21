@@ -9,7 +9,7 @@ import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
-@Path("/tarjeta")
+@Path("/tarjetas")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class TarjetaController {
@@ -24,8 +24,8 @@ public class TarjetaController {
 
     @GET
     @Path("/tablero")
-    public Response obtenerColumnasPorTablero(@QueryParam(value = "tablero") Long tablero) {
-        return Response.ok().build() ;
+    public Response obtenerTarjetasPorTablero(@QueryParam(value = "tablero") Long tablero) {
+        return Response.ok(tarjetaBO.obtenerTarjetasPorTablero(tablero)).build() ;
     }
 
     @POST

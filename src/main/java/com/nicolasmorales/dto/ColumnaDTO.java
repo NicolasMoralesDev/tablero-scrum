@@ -5,7 +5,7 @@ import java.util.List;
 public record ColumnaDTO (
         Long id,
         List<TarjetaDTO> tarjetas,
-        Long tablaro,
+        TableroDTO tablero,
         String titulo,
         boolean borrado
         ){

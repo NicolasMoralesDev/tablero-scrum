@@ -49,8 +49,12 @@ public class EtiquetaBO implements IEtiquetaBO  {
     @Override
     public EtiquetaDTO crearEtiqueta(EtiquetaDTO etiquetaDTO) throws BussinesException {
         try {
-             etiquetaRepository.guardar(etiquetaMapper.etiquetaDTOToEtiqueta(etiquetaDTO));
-             return etiquetaDTO;
+            if (etiquetaRepository.find("nombre", etiquetaDTO.nombre()).firstResult() == null) {
+                etiquetaRepository.guardar(etiquetaMapper.etiquetaDTOToEtiqueta(etiquetaDTO));
+                return etiquetaDTO;
+            } else {
+                throw new BussinesException(String.format("La etiqueta con el nombre %s ya existe", etiquetaDTO.nombre()));
+            }
         } catch (PersistenceException e) {
             throw new BussinesException("Error al intentar crear la etiqueta");
         }

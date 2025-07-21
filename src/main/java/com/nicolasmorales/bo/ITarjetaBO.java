@@ -9,6 +9,8 @@ public interface ITarjetaBO {
 
     List<TarjetaDTO> obtenerTarjetas();
 
+    List<TarjetaDTO> obtenerTarjetasPorTablero(Long id);
+
     Object borrarTarjetaPorId(Long id) throws BussinesException;
 
     TarjetaDTO crearTarjeta(TarjetaDTO tarjetaDTO) throws BussinesException;

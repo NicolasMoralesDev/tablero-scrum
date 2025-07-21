@@ -1,7 +1,5 @@
 package com.nicolasmorales.repository.impl;
 
-import com.nicolasmorales.entity.Etiqueta;
-import com.nicolasmorales.entity.Etiqueta_;
 import com.nicolasmorales.repository.IRepoGenerico;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -38,7 +36,7 @@ public abstract class RepoGenerico<T> implements IRepoGenerico<T> {
             CriteriaBuilder cb = entityManagerFactory.getCriteriaBuilder();
             CriteriaQuery<T> cr = cb.createQuery(tClass);
             Root<T> root = cr.from(tClass);
-            cr.select(root);
+            cr.select(root).where(cb.equal(root.get("borrado"), false));
             return entityManagerFactory.createQuery(cr).getResultList();
         } catch (PersistenceException e) {
             throw new PersistenceException(e.getMessage());

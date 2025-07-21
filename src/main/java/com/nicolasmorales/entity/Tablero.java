@@ -3,6 +3,7 @@ package com.nicolasmorales.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -21,10 +22,11 @@ public class Tablero {
     private String descripcion;
     @OneToMany
     private List<Columna> columnas;
+    @CreationTimestamp
     @Column(name = "FECHA_DE_CREACION")
     private LocalDateTime fechaDeCreacion;
     @Column(name = "BORRADO")
-    private boolean borrado=false;
+    private boolean borrado;
 
     public Long getId() {
         return id;

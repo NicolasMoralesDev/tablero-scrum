@@ -15,10 +15,21 @@ public class Columna {
     private Long id;
     @OneToMany
     private List<Tarjeta> tarjetas;
+    @ManyToOne
+    @JoinColumn(name = "tablero_id", referencedColumnName = "ID")
+    private Tablero tablero;
     @Column(name = "TITULO")
     private String titulo;
     @Column(name = "BORRADO")
-    private boolean borrado=false;
+    private boolean borrado;
+
+    public Tablero getTablero() {
+        return tablero;
+    }
+
+    public void setTablero(Tablero tablero) {
+        this.tablero = tablero;
+    }
 
     public Long getId() {
         return id;

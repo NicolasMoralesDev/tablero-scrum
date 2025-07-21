@@ -2,7 +2,6 @@ package com.nicolasmorales.bo.impl;
 
 import com.nicolasmorales.bo.ITarjetaBO;
 import com.nicolasmorales.dto.TarjetaDTO;
-import com.nicolasmorales.entity.Tablero;
 import com.nicolasmorales.entity.Tarjeta;
 import com.nicolasmorales.exception.BussinesException;
 import com.nicolasmorales.mapper.ITarjetaMapper;
@@ -36,6 +35,13 @@ public class TarjetaBO implements ITarjetaBO {
     }
 
     @Override
+    public List<TarjetaDTO> obtenerTarjetasPorTablero(Long id) {
+        return tarjetaRepository.obtenerTarjetasPorColumna(id).stream()
+                .map(tarjeta -> tarjetaMapper.tarjetaToTarjetaDTO(tarjeta)
+        ).collect(Collectors.toList());
+    }
+
+    @Override
     @Transactional
     public Object borrarTarjetaPorId(Long id) throws BussinesException {
         try {
@@ -51,8 +57,12 @@ public class TarjetaBO implements ITarjetaBO {
     @Override
     public TarjetaDTO crearTarjeta(TarjetaDTO tarjetaDTO) throws BussinesException {
         try {
-            tarjetaRepository.guardar(tarjetaMapper.tarjetaDTOToTarjeta(tarjetaDTO));
-            return tarjetaDTO;
+            if (tarjetaRepository.find("titulo", tarjetaDTO.titulo()).firstResult() == null) {
+                tarjetaRepository.guardar(tarjetaMapper.tarjetaDTOToTarjeta(tarjetaDTO));
+                return tarjetaDTO;
+            } else {
+                throw new BussinesException(String.format("La tarjeta con el titulo %s ya existe", tarjetaDTO.titulo()));
+            }
         } catch (PersistenceException e) {
             throw new BussinesException("Error al intentar crear la tarjeta");
         }

@@ -49,8 +49,12 @@ public class TableroBO implements ITableroBO {
     @Override
     public TableroDTO crearTablero(TableroDTO tableroDTO) throws BussinesException {
         try {
-            tableroRepository.guardar(tableroMapper.tableroDTOToTablero(tableroDTO));
-            return tableroDTO;
+            if (tableroRepository.find("titulo", tableroDTO.titulo()).firstResult() == null) {
+                tableroRepository.guardar(tableroMapper.tableroDTOToTablero(tableroDTO));
+                return tableroDTO;
+            } else {
+                throw new BussinesException(String.format("El tablero con el titulo %s ya existe", tableroDTO.titulo()));
+            }
         } catch (PersistenceException e) {
             throw new BussinesException("Error al intentar crear el tablero");
         }

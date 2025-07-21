@@ -10,7 +10,8 @@ public interface IColumnaMapper {
 
     @Mappings({
             @Mapping(target = "id", source = "columna.id"),
-            @Mapping(target = "tarjetas", source = "columna.tarjetas"),
+            @Mapping(target = "tarjetas", source = "columna.tarjetas", ignore = true),
+            @Mapping(target = "tablero", source = "columna.tablero", ignore = true),
             @Mapping(target = "titulo", source = "columna.titulo"),
             @Mapping(target = "borrado", source = "columna.borrado"),
     })
@@ -18,7 +19,8 @@ public interface IColumnaMapper {
 
     @Mappings({
             @Mapping(target = "id", source = "columna.id"),
-            @Mapping(target = "tarjetas", source = "columna.tarjetas"),
+            @Mapping(target = "tarjetas", source = "columna.tarjetas", ignore = true),
+            @Mapping(target = "tablero", source = "columna.tablero", ignore = true),
             @Mapping(target = "titulo", source = "columna.titulo"),
             @Mapping(target = "borrado", source = "columna.borrado"),
     })

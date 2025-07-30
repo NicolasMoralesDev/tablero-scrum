@@ -4,7 +4,7 @@ name: CI build
 
 on:
   push:
-    branches: [ main ]
+    branches: [ feature/pipe-docker ]
   pull_request:
     branches: [ main ]
 

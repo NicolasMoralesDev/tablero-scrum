@@ -23,3 +23,6 @@ jobs:
 
       - name: Build
         run: ./mvnw clean install
+
+      - name: Deploy
+        run: docker build -f src/main/docker/Dockerfile.jvm --tag my-image-name:$(date +%s)

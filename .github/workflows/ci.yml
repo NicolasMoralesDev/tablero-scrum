@@ -22,4 +22,4 @@ jobs:
           cache: maven
 
       - name: Build
-        run: ./mvnw clean build
+        run: ./mvnw clean install

@@ -7,10 +7,10 @@ on:
         description: 'Branch to run the pipeline on'
         required: true
         type: string
- # push:
-  #  branches: [ feature/**, release/** ]
-  #pull_request:
-   # branches: [ main, develop, release/**]
+  push:
+    branches: [ feature/**, release/** ]
+  pull_request:
+    branches: [ main, develop, release/**]
 
 jobs:
   build:

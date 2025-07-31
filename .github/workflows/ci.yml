@@ -24,11 +24,9 @@ jobs:
           java-version: 21
           distribution: temurin
           cache: maven
-
       - name: Build
         run: ./mvnw clean install
         with:
           ref: ${{ github.event.inputs.deploy }}
-
       - name: Deploy
         run: docker build -f src/main/docker/Dockerfile.jvm -t ${{ vars.NOMBRE_BASE }}${{ github.sha }} .

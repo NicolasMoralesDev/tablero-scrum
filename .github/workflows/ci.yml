@@ -17,7 +17,8 @@ jobs:
     runs-on: ubuntu-latest
     environment: desa
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout del repositorio
+        uses: actions/checkout@v4
         with:
           ref: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.deploy || github.ref }}
 

@@ -3,9 +3,10 @@ name: CI build
 on:
   workflow_dispatch:
     inputs:
-      branch:
+      trigger:
         description: 'Branch to run the pipeline on'
         required: true
+        type: string
   push:
     branches: [ feature/**, release/** ]
   pull_request:
@@ -29,4 +30,6 @@ jobs:
         run: ./mvnw clean install
 
       - name: Deploy
+        with:
+          ref: ${{ github.event.inputs.trigger }}
         run: docker build -f src/main/docker/Dockerfile.jvm -t ${{ vars.NOMBRE_BASE }}${{ github.sha }} .

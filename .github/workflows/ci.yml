@@ -2,6 +2,10 @@ name: CI build
 
 on:
   workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Branch to run the pipeline on'
+        required: true
   push:
     branches: [ feature/**, release/** ]
   pull_request:

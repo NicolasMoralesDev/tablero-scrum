@@ -3,7 +3,7 @@ name: CI build
 on:
   workflow_dispatch:
     inputs:
-      trigger:
+      deploy:
         description: 'Branch to run the pipeline on'
         required: true
         type: string
@@ -18,7 +18,6 @@ jobs:
     environment: desa
     steps:
       - uses: actions/checkout@v4
-
       - name: Set up JDK 21
         uses: actions/setup-java@v4
         with:
@@ -31,5 +30,5 @@ jobs:
 
       - name: Deploy
         with:
-          ref: ${{ github.event.inputs.trigger }}
+          ref: ${{ github.event.inputs.deploy }}
         run: docker build -f src/main/docker/Dockerfile.jvm -t ${{ vars.NOMBRE_BASE }}${{ github.sha }} .

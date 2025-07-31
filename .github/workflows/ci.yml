@@ -27,8 +27,8 @@ jobs:
 
       - name: Build
         run: ./mvnw clean install
-
-      - name: Deploy
         with:
           ref: ${{ github.event.inputs.deploy }}
+
+      - name: Deploy
         run: docker build -f src/main/docker/Dockerfile.jvm -t ${{ vars.NOMBRE_BASE }}${{ github.sha }} .

@@ -17,10 +17,16 @@ jobs:
     runs-on: ubuntu-latest
     environment: desa
     steps:
-      - name: Checkout del repositorio
+      - name: Checkout
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.deploy || github.ref }}
+          ref: ${{ github.event.inputs.deploy }}
+
+      - name: Login Docker
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Set up JDK 21
         uses: actions/setup-java@v4
@@ -29,8 +35,12 @@ jobs:
           distribution: temurin
           cache: maven
 
-      - name: Build
+      - name: Install
         run: ./mvnw clean install
 
-      - name: Deploy
+      - name: Build image
         run: docker build -f src/main/docker/Dockerfile.jvm -t ${{ vars.NOMBRE_BASE }}${{ github.sha }} .
+
+      - name: Push Docker image
+        run: |
+          docker push ${{ vars.NOMBRE_BASE }}:${{ github.sha }}

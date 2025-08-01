@@ -43,4 +43,4 @@ jobs:
 
       - name: Push Docker image
         run: |
-          docker push  ${{ secrets.DOCKERHUB_USERNAME }}/${{ vars.NOMBRE_BASE }}
+          docker push  ${{ secrets.DOCKERHUB_USERNAME }}/tablero-scrum

@@ -43,4 +43,4 @@ jobs:
 
       - name: Push Docker image
         run: |
-          docker push ${{ secrets.DOCKERHUB_USERNAME }} ${{ vars.NOMBRE_BASE }}${{ github.sha }}
+          docker push  ${{ vars.NOMBRE_BASE }}${{ github.sha }}

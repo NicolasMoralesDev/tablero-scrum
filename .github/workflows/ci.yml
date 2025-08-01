@@ -39,8 +39,8 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Build image
-        run: docker build -f src/main/docker/Dockerfile.jvm -t ${{ vars.NOMBRE_BASE }}${{ github.sha }} .
+        run: docker build -f src/main/docker/Dockerfile.jvm -t ${{ secrets.DOCKERHUB_USERNAME }}/${{ vars.NOMBRE_BASE }}${{ github.sha }} .
 
       - name: Push Docker image
         run: |
-          docker push  ${{ vars.NOMBRE_BASE }}${{ github.sha }}
+          docker push  ${{ secrets.DOCKERHUB_USERNAME }}/${{ vars.NOMBRE_BASE }}${{ github.sha }}

@@ -38,9 +38,14 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Build image
-        run: docker build -f src/main/docker/Dockerfile.jvm -t ${{ secrets.DOCKERHUB_USERNAME }}/${{ vars.NOMBRE_BASE }}${{ github.sha }} .
+   #   - name: Build image
+    #    run: docker build -f src/main/docker/Dockerfile.jvm -t ${{ secrets.DOCKERHUB_USERNAME }}/${{ vars.NOMBRE_BASE }}${{ github.sha }} .
 
       - name: Push Docker image
         run: |
-          docker push  ${{ secrets.DOCKERHUB_USERNAME }}/${{ vars.NOMBRE_BASE }}${{ github.sha }}
+          IMAGE_NAME="nicodev10/tablero-scrum"
+          IMAGE_TAG=${{ github.sha }}
+           # Construye la imagen y la etiqueta con el SHA del commit y 'latest'
+          docker build -f src/main/docker/Dockerfile.jvm -t $IMAGE_NAME:$IMAGE_TAG -t $IMAGE_NAME:latest .
+          docker push $IMAGE_NAME:$IMAGE_TAG
+          docker push $IMAGE_NAME:latest

@@ -33,5 +33,5 @@ jobs:
       - name: Push artifact
         uses: actions/upload-artifact@v4
         with:
-          name: $IMAGE_NAME
+          name: ${{ vars.NOMBRE_BASE }}
           path: target/*.jar

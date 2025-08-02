@@ -21,6 +21,7 @@ jobs:
   ci_build:
     name: CI Build and Artifact
     runs-on: ubuntu-latest
+    if: github.event_name == 'push'
     environment: desa
     steps:
       - name: Checkout
@@ -45,7 +46,7 @@ jobs:
   cd_deploy:
     name: CD Docker Deploy
     runs-on: ubuntu-latest
-    if: success() && github.event_name == 'workflow_dispatch'
+    if:  github.event_name == 'workflow_dispatch'
     needs: ci_build
     permissions:
       contents: read

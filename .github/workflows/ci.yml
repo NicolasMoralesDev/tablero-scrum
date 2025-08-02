@@ -40,11 +40,12 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: ${{ vars.NOMBRE_BASE }}
-          path: target/*.jar
+          path: target
+
   cd_deploy:
     name: CD Docker Deploy
     runs-on: ubuntu-latest
-   ## if: success() && github.event_name == 'workflow_dispatch'
+    if: success() && github.event_name == 'workflow_dispatch'
     needs: ci_build
     permissions:
       contents: read

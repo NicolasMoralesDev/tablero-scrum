@@ -1,0 +1,42 @@
+name: CD build
+
+on:
+  workflow_dispatch:
+    inputs:
+      run_id:
+        description: 'ID de la ejecución de CI para desplegar'
+        required: true
+        type: string
+
+env:
+  IMAGE_TAG: ${{ github.sha }}
+  IMAGE_NAME: ${{ secrets.DOCKERHUB_USERNAME }}/${{ vars.NOMBRE_BASE }}
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment: desa
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Pull Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: app-artifact
+          run-id: ${{ github.event.inputs.run_id }}
+
+      - name: Login Docker
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build image
+        run: |
+         echo "Construyendo la imagen con la etiqueta: $IMAGE_NAME:$IMAGE_TAG"
+         docker build -f src/main/docker/Dockerfile.jvm -t $IMAGE_NAME:$IMAGE_TAG .
+
+      - name: Push Docker image
+        run: |
+          echo "Desplegando la imagen: $IMAGE_NAME:$IMAGE_TAG"
+          docker push $IMAGE_NAME:$IMAGE_TAG

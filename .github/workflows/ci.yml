@@ -21,7 +21,6 @@ jobs:
   ci_build:
     name: CI Build and Artifact
     runs-on: ubuntu-latest
-    if: github.event_name == 'push'
     environment: desa
     steps:
       - name: Checkout

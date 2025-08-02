@@ -45,7 +45,7 @@ jobs:
   cd_deploy:
     name: CD Docker Deploy
     runs-on: ubuntu-latest
-    if: success()
+    if: success() && github.event_name == 'workflow_dispatch'
     needs: ci_build
     permissions:
       contents: read

@@ -17,7 +17,7 @@ jobs:
       - name: Pull Artifact
         uses: actions/download-artifact@v4
         with:
-          name: $IMAGE_TAG
+          name: ${{ vars.NOMBRE_BASE }}
 
       - name: Login Docker
         uses: docker/login-action@v3

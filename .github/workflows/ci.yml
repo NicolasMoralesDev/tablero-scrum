@@ -12,7 +12,7 @@ on:
         description: 'La rama a desplegar (ej. release/v1.0.0)'
         required: true
         type: string
-        default: 'main'
+        default: 'feature/pipe-docker'
 
 env:
   IMAGE_TAG: ${{ github.sha }}
@@ -44,7 +44,7 @@ jobs:
   cd_deploy:
     name: CD Docker Deploy
     runs-on: ubuntu-latest
-    if: success() && github.event_name == 'workflow_dispatch'
+   ## if: success() && github.event_name == 'workflow_dispatch'
     needs: ci_build
     permissions:
       contents: read

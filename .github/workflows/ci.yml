@@ -11,7 +11,7 @@ on:
         description: 'La rama a desplegar (ej. release/v1.0.0)'
         required: false
         type: string
-        default: 'main'
+        default: 'feature/pipe-docker'
 
 env:
   IMAGE_TAG: ${{ github.sha }}

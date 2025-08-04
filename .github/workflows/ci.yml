@@ -3,14 +3,11 @@ name: CI/CD
 on:
   push:
     branches: [ feature/**, release/** ]
-  pull_request:
-    branches: [ main, develop, release/**]
   workflow_dispatch:
     inputs:
       deploy_branch:
         description: 'La rama a desplegar (ej. release/v1.0.0)'
         required: false
-        type: string
         default: 'feature/pipe-docker'
 
 env:
@@ -25,7 +22,7 @@ jobs:
       - name: Checkout del repositorio
         uses: actions/checkout@v4
         with:
-         ref: ${{ github.event.inputs.deploy_branch != '' && github.event.inputs.deploy_branch || github.ref }}
+         ref: ${{ github.event.inputs.deploy_branch }}
 
       - name: Set up JDK 21
         uses: actions/setup-java@v4

@@ -2,6 +2,11 @@ name: Deploy
 
 on:
   workflow_dispatch:
+    inputs:
+      dispatch:
+        description: "Push image"
+        required: true
+        default: "feature/pipe-docker"
 
 env:
   IMAGE_TAG: ${{ github.sha }}
@@ -16,7 +21,7 @@ jobs:
       - name: Checkout del repositorio
         uses: actions/checkout@v4
 
-      - name: Descargar artefacto del último run
+      - name: Pull Artifact
         uses: dawidd6/action-download-artifact@v3
         with:
           workflow: ci.yml

@@ -2,6 +2,7 @@ package com.nicolasmorales.controller;
 
 import com.nicolasmorales.bo.IColumnaBO;
 import com.nicolasmorales.dto.ColumnaDTO;
+import com.nicolasmorales.entity.Columna;
 import com.nicolasmorales.exception.BussinesException;
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;

@@ -23,43 +23,4 @@ public class Columna {
     @Column(name = "BORRADO")
     private boolean borrado;
 
-    public Tablero getTablero() {
-        return tablero;
-    }
-
-    public void setTablero(Tablero tablero) {
-        this.tablero = tablero;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public List<Tarjeta> getTarjetas() {
-        return tarjetas;
-    }
-
-    public void setTarjetas(List<Tarjeta> tarjetas) {
-        this.tarjetas = tarjetas;
-    }
-
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
-    }
-
-    public boolean isBorrado() {
-        return borrado;
-    }
-
-    public void setBorrado(boolean borrado) {
-        this.borrado = borrado;
-    }
 }
